@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="diseño.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <title>Juego con Vue</title>
+</head>
+<body>
+  <table>
+      <tr>
+          <th id="titulo" colspan="2">
+              Juego de encontrar la llave
+          </th>
+      </tr>
+      <tr>
+          <th id = "imgIzquierda"><img v-bind:src="img" @click="bool ? abrirManoIzq() : llaveIzqPis()"></th>
+          <th id = "imgDerecha"><img v-bind:src="img" @click="bool ? abrirManoDer() : llaveDerPis()"></th>
+      </tr>
+      <tr>
+          <th id = "puntosJug" class = "contandores" style="background-color: orange;">Puntos del jugador: {{num}}</th>
+          <th id = "puntosMaq" class = "contandores" style="background-color: orange;">Puntos de la maquina: {{num}}</th>
+      </tr>
+      <tr>
+        <th id="pistas"><button @click="pista()">Pista</button>
+            <h5 v-if="visible">La llave se encuentra a la {{loc}}</h5>
+        </th>
+      </tr>
+      <tr>
+          <th><button onclick="reiniciarContador()">Reiniciar Contador</button></th>
+      </tr>
+  </table>
+
+  <script>
+      var imgIzquierda = new Vue({
+          el: "#imgIzquierda",
+          data: {
+              img: "../imagenes/mano-cerrada.png",
+              bool: true
+            },
+            methods: {
+                abrirManoIzq: function() {
+                    var al = Math.floor(Math.random() * (2 - 0));
+
+                    if(al == 0){
+                        imgIzquierda.img = "../imagenes/mano-con-llave.png";
+
+                        puntosJug.num = puntosJug.num + 1;
+
+                        setTimeout(() => {
+                            imgIzquierda.img = "../imagenes/mano-cerrada.png";
+                        }, 3000);
+                    } else {
+                        imgIzquierda.img = "../imagenes/mano-sin-llave.png";
+
+                        setTimeout(() => {
+                            imgDerecha.img = "../imagenes/mano-con-llave.png";
+                        }, 2000);
+
+                        puntosMaq.num = puntosMaq.num + 1;
+
+                        setTimeout(() => {
+                            imgIzquierda.img = "../imagenes/mano-cerrada.png";
+                            imgDerecha.img = "../imagenes/mano-cerrada.png";
+                        }, 5000);
+                    }
+                },
+                llaveIzqPis: function() {
+                        imgIzquierda.img = "../imagenes/mano-con-llave.png";
+
+                        puntosJug.num = puntosJug.num + 1;
+
+                        setTimeout(() => {
+                            imgIzquierda.img = "../imagenes/mano-cerrada.png";
+                        }, 3000);
+
+                        imgIzquierda.bool = true;
+            }
+        }
+      });
+
+      var imgDerecha = new Vue({
+          el: "#imgDerecha",
+          data: {
+              img: "../imagenes/mano-cerrada.png",
+              bool: true
+            },
+            methods: {
+                abrirManoDer: function() {
+                    var al = Math.floor(Math.random() * (2 - 0));
+
+                    if(al == 0){
+                        imgDerecha.img = "../imagenes/mano-con-llave.png";
+
+                        puntosJug.num = puntosJug.num + 1;
+
+                        setTimeout(() => {
+                            imgDerecha.img = "../imagenes/mano-cerrada.png";
+                        }, 3000);
+                    } else {
+                        imgDerecha.img = "../imagenes/mano-sin-llave.png";
+
+                        setTimeout(() => {
+                            imgIzquierda.img = "../imagenes/mano-con-llave.png";
+                        }, 2000);
+
+                        puntosMaq.num = puntosMaq.num + 1;
+
+                        setTimeout(() => {
+                            imgIzquierda.img = "../imagenes/mano-cerrada.png";
+                            imgDerecha.img = "../imagenes/mano-cerrada.png";
+                        }, 5000);
+                    }
+            },
+            llaveDerPis: function() {
+                        imgDerecha.img = "../imagenes/mano-con-llave.png";
+
+                        puntosJug.num = puntosJug.num + 1;
+
+                        setTimeout(() => {
+                            imgDerecha.img = "../imagenes/mano-cerrada.png";
+                        }, 3000);
+
+                        imgDerecha.bool = true;
+            }
+            
+        }
+      });
+
+      var puntosJug = new Vue({
+          el: "#puntosJug",
+          data: {
+              num: 0
+            }
+      });
+
+      var puntosMaq = new Vue({
+          el: "#puntosMaq",
+          data: {
+              num: 0
+            }
+      });
+
+      var pistas = new Vue({
+          el: "#pistas",
+          data: {
+              loc: "vacio",
+              visible: false
+            },
+            methods: {
+                pista: function(){
+                    var al = Math.floor(Math.random() * (2 - 0))
+                    if(al == 0){
+                        pistas.loc = "izquierda";
+                        imgIzquierda.bool = false;
+
+                    } else {
+                        pistas.loc = "derecha";
+                        imgDerecha.bool = false;
+                    }
+
+                    pistas.visible = true;
+
+                    setTimeout(() => {
+                            pistas.visible = false;
+                        }, 5000);
+                }
+            }
+      });
+
+    function reiniciarContador(){
+        puntosJug.num = 0;
+        puntosMaq.num = 0;
+    }
+  </script>
+
+</body>
+</html>

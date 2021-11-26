@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src = "program.js"> </script>
+    <link rel="stylesheet" href="diseño.css">
+    
+    <title>Juego con Jquery</title>
+</head>
+<body>
+  <table>
+      <tr>
+          <th id="titulo" colspan="2">
+              Juego de encontrar la llave
+          </th>
+      </tr>
+      <tr>
+          <th> <img id="izquierda" src="../imagenes/mano-cerrada.png" alt=""></th>
+          <th> <img id="derecha" src="../imagenes/mano-cerrada.png" alt=""></th>
+      </tr>
+      <tr>
+          <th class="contandores" id="jugador"> Puntos del jugador: 0  </th>
+          <th class="contandores" id="maquina"> Puntos de la maquina: 0 </th>
+      </tr>
+      <tr>
+            <th><button onclick="pista();">Pista</button><h5 id="pista"></h5></th>
+            
+      </tr>
+      <tr><th><button onclick="reinicia();">Reiniciar Contador</button></th></tr>
+  </table>
+  
+    
+
+
+  
+</body>
+</html>

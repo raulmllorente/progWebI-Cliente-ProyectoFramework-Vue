@@ -1,0 +1,26 @@
+#titulo:hover{
+    border-radius: 25px;
+}
+#titulo{
+    background-color: blue; color: white;   
+}
+
+img{
+    width: 200px;
+    height: 200px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.contandores:hover{
+    border-radius: 25px;
+}
+.contandores{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: orange;
+}
+
+button{
+    border-radius: 25px;
+}
