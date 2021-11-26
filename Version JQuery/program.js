@@ -28,19 +28,19 @@ $(document).ready(function(){
         jugadorPun++;
         $("#jugador").html("Puntos del jugador: "+jugadorPun);
         mano.alt="";
-        setTimeout(resetImg,2000);   
+        setTimeout(resetImg,2000);
     }else{
         manoDerecha=$("#derecha").attr("alt");
         $(mano).attr("src", "../imagenes/mano-sin-llave.png");
         maquinaPun++;
         $("#maquina").html("Puntos de la maquina: "+maquinaPun);
             if(manoDerecha=="llave"){
-                setTimeout(Derechallave,2000)  
+                setTimeout(Derechallave,2000);
             }else{
-                setTimeout(Izquierdallave,2000)  
+                setTimeout(Izquierdallave,2000);
 
             }
-            setTimeout(resetImg,4000);  
+            setTimeout(resetImg,4000);
         }
         mano.alt="";
         llaveEscondedor();
